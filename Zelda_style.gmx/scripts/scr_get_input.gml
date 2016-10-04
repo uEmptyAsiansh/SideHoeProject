@@ -8,10 +8,10 @@ dash_key = keyboard_check_pressed(ord('C'));
 
 attack_key = keyboard_check_pressed(ord('X'));
 
-pause_key = keyboard_check_pressed(ord('Z'));
+swap_key = keyboard_check_pressed(ord('Z'));
 
 spell_key = keyboard_check_pressed(ord('V'));
-
+pause_key = keyboard_check_pressed(ord('vk_escape'));
 //get the axis
 xaxis = (right_key - left_key);
 yaxis = (down_key - up_key);
@@ -25,4 +25,5 @@ dash_key = gamepad_button_check_pressed (0,gp_face1);
 attack_key = gamepad_button_check_pressed (0,gp_face3);
 pause_key = gamepad_button_check_pressed (0,gp_start);
 spell_key =gamepad_button_check_pressed (0,gp_face2);
+swap_key = gamepad_button_check_pressed (0,gp_face4);
 }

@@ -121,6 +121,7 @@ if (other.id != creator)
             <string>///damagepaler
 if (other.id != creator)
 {
+    audio_play_sound(snd_player_takes_damage,9,false);
     obj_player_stats.hp -= damage;
     // apply knockback
     if (instance_exists(creator))

@@ -3,6 +3,9 @@ if (alarm [0] <=0)
 {
     state = choose (scr_enemy_idle_state, scr_enemy_wander_state)
     alarm [0] = room_speed*irandom_range(2,4);
-    targetx=random(room_width);
-    tagety=random(room_height);
+    if(state == scr_enemy_wander_state)
+    {
+        xaxis=random_range(-1,1);
+        yaxis=random_range(-1,1);
+    }
 }

@@ -26,6 +26,11 @@
           <argument>
             <kind>1</kind>
             <string>///initialize variables
+//check how many players in room
+if(instance_number(obj_player) &gt; 1)
+{
+    instance_destroy();
+}
 //inherit
 event_inherited();
 //set speed
@@ -42,10 +47,11 @@ state= scr_move_state;
 //axis
 yaxis=0;
 xaxis=0;
-attacked=false;
 //direction of sprite
 face = RIGHT;
 movement = MOVE;
+weapon_sprite = spr_sword;
+//spell=????
 
 
 //Create sprite array
@@ -118,40 +124,6 @@ if(obj_player_stats.hp &lt;=0)
         </arguments>
       </action>
     </event>
-    <event eventtype="4" ename="obj_health">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///collect health
-with (other)
-{
-    instance_destroy();
-}
-
-//level up
-with (obj_player_stats)
-{
-   hp = min(hp+1, maxhp)
-}
-
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="4" ename="obj_door">
       <action>
         <libid>1</libid>
@@ -181,6 +153,41 @@ if (room_exists(other.new_room))
         </arguments>
       </action>
     </event>
+    <event eventtype="4" ename="obj_health">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///collect health
+with (other)
+{
+    instance_destroy();
+    audio_play_sound(snd_expr, 6, false);
+}
+
+//level up
+with (obj_player_stats)
+{
+   hp = min(hp+1, maxhp)
+}
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="4" ename="obj_expr">
       <action>
         <libid>1</libid>
@@ -202,6 +209,7 @@ if (room_exists(other.new_room))
 with (other)
 {
     instance_destroy();
+    audio_play_sound(snd_expr, 6, false);
 }
 
 //level up
